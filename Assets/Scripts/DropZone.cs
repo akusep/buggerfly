@@ -42,7 +42,26 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 
     public void OnDrop(PointerEventData eventData) {
         //Random.Range(0, 4);
-        // Debug.Log(eventData.pointerDrag.name + " dropped on " + gameObject.name + " tag: " + eventData.pointerDrag.tag);
+        Debug.Log(eventData.pointerDrag.name + " dropped on " + gameObject.name + "object tag " + gameObject.tag + " tag: " + eventData.pointerDrag.tag);
+
+        if (gameObject.tag == "container-origin") {
+            Debug.Log("kotipesä");
+            switch (eventData.pointerDrag.tag)
+            {
+                case "red":
+                    Reds.Remove(eventData.pointerDrag.tag);
+                    break;
+                case "blue":
+                    Blues.Remove(eventData.pointerDrag.tag);
+                    break;
+                case "green":
+                    Greens.Remove(eventData.pointerDrag.tag);
+                    break;
+                default:
+                    Debug.Log("color not found");
+                    break;
+            }
+        }
 
         switch (eventData.pointerDrag.tag)
         {
@@ -76,6 +95,9 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
                 Debug.Log("color not found");
                 break;
         }
+
+        Debug.Log("red " + Reds.Count + " green " + Greens.Count + " blue " + Blues.Count);
+
 
         Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
         if (d != null) {
