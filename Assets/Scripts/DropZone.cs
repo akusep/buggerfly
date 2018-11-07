@@ -11,6 +11,9 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     public List<string> Blues = new List<string>();
     public List<string> Greens = new List<string>();
 
+    public GameObject SuccessText;
+
+
     //public List<string> Colors = new List<string>(new string[] { "red", "blue", "green" });
 
     public void OnPointerEnter(PointerEventData eventData) {
@@ -47,6 +50,8 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
                 Reds.Add(eventData.pointerDrag.tag);
                 if (Reds.Count == 3) {
                     Debug.Log("red " + Reds.Count);
+                    SuccessText.SetActive(true);
+
                 }
                 break;
             case "blue":
@@ -54,6 +59,8 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
                 if (Blues.Count == 3)
                 {
                     Debug.Log("blue " + Blues.Count);
+                    SuccessText.SetActive(true);
+
                 }
                 break;
             case "green":
@@ -61,6 +68,8 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
                 if (Greens.Count == 3)
                 {
                     Debug.Log("green " + Greens.Count);
+                    SuccessText.SetActive(true);
+
                 }
                 break;
             default:
