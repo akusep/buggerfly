@@ -12,6 +12,15 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     private GameObject placeHolder = null;
 
+    AudioSource audioData;
+
+    void Start()
+    {
+        audioData = GetComponent<AudioSource>();
+       
+    }
+
+
     public void OnBeginDrag(PointerEventData eventData) {
         placeHolder = new GameObject();
         placeHolder.transform.SetParent( this.transform.parent );
@@ -57,8 +66,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     }
 
     public void OnEndDrag(PointerEventData eventData) {
+        this.transform.eulerAngles = new Vector3(0, 0, 0);
 
-     //   this.transform.rotation = 0,0,0;
+        audioData.Play(0);
+        Debug.Log("started");
+
         this.transform.SetParent(parentToReturnTo);
         this.transform.SetSiblingIndex(placeHolder.transform.GetSiblingIndex());
         this.GetComponent<CanvasGroup>().blocksRaycasts = true;
