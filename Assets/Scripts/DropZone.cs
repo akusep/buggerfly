@@ -42,6 +42,8 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 
     public void OnDrop(PointerEventData eventData) {
         //Random.Range(0, 4);
+        Debug.Log("OnDrop start red " + Reds.Count + " green " + Greens.Count + " blue " + Blues.Count);
+
         Debug.Log(eventData.pointerDrag.name + " dropped on " + gameObject.name + "object tag " + gameObject.tag + " tag: " + eventData.pointerDrag.tag);
 
         if (gameObject.tag == "container-origin") {
@@ -49,52 +51,59 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
             switch (eventData.pointerDrag.tag)
             {
                 case "red":
-                    Reds.Remove(eventData.pointerDrag.tag);
+                    Debug.Log("Red amount to be removed " + Reds.Count);
+                    Reds.RemoveAt(Reds.Count - 1);
+                    Debug.Log("Red removed" + Reds.Count);
                     break;
                 case "blue":
-                    Blues.Remove(eventData.pointerDrag.tag);
+                    Blues.RemoveAt(Blues.Count - 1); ;
+                    Debug.Log("Blue removed");
                     break;
                 case "green":
-                    Greens.Remove(eventData.pointerDrag.tag);
+                    Greens.RemoveAt(Greens.Count - 1);
+                    Debug.Log("Green removed");
                     break;
                 default:
                     Debug.Log("color not found");
                     break;
             }
-        }
+        } 
+            Debug.Log("dropzone");
+            switch (eventData.pointerDrag.tag)
+            {
+                case "red":
+                    Reds.Add(eventData.pointerDrag.tag);
+                    Debug.Log("red added " + Reds.Count);
 
-        switch (eventData.pointerDrag.tag)
-        {
-            case "red":
-                Reds.Add(eventData.pointerDrag.tag);
-                if (Reds.Count == 3) {
-                    Debug.Log("red " + Reds.Count);
-                    SuccessText.SetActive(true);
+                    if (Reds.Count == 3)
+                    {
+                        Debug.Log("red " + Reds.Count);
+                        SuccessText.SetActive(true);
 
+                    }
+                    break;
+                case "blue":
+                    Blues.Add(eventData.pointerDrag.tag);
+                    if (Blues.Count == 3)
+                    {
+                        Debug.Log("blue " + Blues.Count);
+                        SuccessText.SetActive(true);
+
+                    }
+                    break;
+                case "green":
+                    Greens.Add(eventData.pointerDrag.tag);
+                    if (Greens.Count == 3)
+                    {
+                        Debug.Log("green " + Greens.Count);
+                        SuccessText.SetActive(true);
+
+                    }
+                    break;
+                default:
+                    Debug.Log("color not found");
+                    break;
                 }
-                break;
-            case "blue":
-                Blues.Add(eventData.pointerDrag.tag);
-                if (Blues.Count == 3)
-                {
-                    Debug.Log("blue " + Blues.Count);
-                    SuccessText.SetActive(true);
-
-                }
-                break;
-            case "green":
-                Greens.Add(eventData.pointerDrag.tag);
-                if (Greens.Count == 3)
-                {
-                    Debug.Log("green " + Greens.Count);
-                    SuccessText.SetActive(true);
-
-                }
-                break;
-            default:
-                Debug.Log("color not found");
-                break;
-        }
 
         Debug.Log("red " + Reds.Count + " green " + Greens.Count + " blue " + Blues.Count);
 
