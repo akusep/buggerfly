@@ -41,27 +41,32 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     }
 
     public void OnDrop(PointerEventData eventData) {
+        foreach (Transform child in transform)
+        {
+            //child is your child transform
+            Debug.Log("child " + child.name + " child tag " + transform.parent.tag);
+        }
         //Random.Range(0, 4);
-        Debug.Log("OnDrop start red " + Reds.Count + " green " + Greens.Count + " blue " + Blues.Count);
+        //Debug.Log("OnDropZone start red " + Reds.Count + " green " + Greens.Count + " blue " + Blues.Count);
 
-        Debug.Log(eventData.pointerDrag.name + " dropped on " + gameObject.name + "object tag " + gameObject.tag + " tag: " + eventData.pointerDrag.tag);
+        //Debug.Log(eventData.pointerDrag.name + " dropped on " + gameObject.name + "object tag " + gameObject.tag + " tag: " + eventData.pointerDrag.tag);
 
         if (gameObject.tag == "container-origin") {
             Debug.Log("kotipesä");
             switch (eventData.pointerDrag.tag)
             {
                 case "red":
-                    Debug.Log("Red amount to be removed " + Reds.Count);
+                    //Debug.Log("Red amount to be removed " + Reds.Count);
                     Reds.RemoveAt(Reds.Count - 1);
-                    Debug.Log("Red removed" + Reds.Count);
+                    //Debug.Log("Red removed" + Reds.Count);
                     break;
                 case "blue":
                     Blues.RemoveAt(Blues.Count - 1); ;
-                    Debug.Log("Blue removed");
+                    //Debug.Log("Blue removed");
                     break;
                 case "green":
                     Greens.RemoveAt(Greens.Count - 1);
-                    Debug.Log("Green removed");
+                    //Debug.Log("Green removed");
                     break;
                 default:
                     Debug.Log("color not found");
@@ -73,11 +78,11 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
             {
                 case "red":
                     Reds.Add(eventData.pointerDrag.tag);
-                    Debug.Log("red added " + Reds.Count);
+                    //Debug.Log("red added " + Reds.Count);
 
                     if (Reds.Count == 3)
                     {
-                        Debug.Log("red " + Reds.Count);
+                        //Debug.Log("red " + Reds.Count);
                         SuccessText.SetActive(true);
 
                     }
@@ -86,7 +91,7 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
                     Blues.Add(eventData.pointerDrag.tag);
                     if (Blues.Count == 3)
                     {
-                        Debug.Log("blue " + Blues.Count);
+                        //Debug.Log("blue " + Blues.Count);
                         SuccessText.SetActive(true);
 
                     }
@@ -95,7 +100,7 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
                     Greens.Add(eventData.pointerDrag.tag);
                     if (Greens.Count == 3)
                     {
-                        Debug.Log("green " + Greens.Count);
+                        //Debug.Log("green " + Greens.Count);
                         SuccessText.SetActive(true);
 
                     }
@@ -105,7 +110,7 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
                     break;
                 }
 
-        Debug.Log("red " + Reds.Count + " green " + Greens.Count + " blue " + Blues.Count);
+        //Debug.Log("red " + Reds.Count + " green " + Greens.Count + " blue " + Blues.Count);
 
 
         Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
