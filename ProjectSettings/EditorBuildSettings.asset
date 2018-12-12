@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Buggerfly_title.unity
+    guid: 629423e97d2ed4d81848dc1fbd3d0500
+  - enabled: 1
     path: Assets/Scenes/Buggerfly.unity
     guid: f590cbc532979410d9f69335f17e9919
   m_configObjects: {}
